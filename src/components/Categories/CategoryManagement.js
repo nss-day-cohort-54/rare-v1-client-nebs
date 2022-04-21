@@ -1,11 +1,11 @@
 //purspose is to produce a list of all categories
 
 import { useEffect, useState } from "react"
-import { delete_category, get_all_categories } from "./CategoryManager"
+import { delete_category, get_all_categories, update_category } from "./CategoryManager"
 
 export const CategoryManagement = () => {
     const [categories, setCategories] = useState([])
-    // const [updater, setUpdater] = useState(False)
+    const [updater, setUpdater] = useState(false)
 
 
     useEffect(
@@ -16,7 +16,7 @@ export const CategoryManagement = () => {
                     setCategories(response)
                 }
             )
-        },[]
+        },[updater]
     )
 
 
@@ -32,11 +32,24 @@ export const CategoryManagement = () => {
                     onClick={
                         () => {
                             delete_category(category.id)
-                            // setUpdater(!updater)
+                            setUpdater(!updater)
                         }
                         
                     }
                     >Delete
+                    </button>
+                    
+                    <button 
+                    
+                    className="edit_btn"
+                    onClick={
+                        () => {
+                            update_category(category)
+                            setUpdater(!updater)
+                        }
+                        
+                    }
+                    >Edit
                     </button>
                 </div>
         })}
