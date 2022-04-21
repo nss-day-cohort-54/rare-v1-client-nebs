@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { PostList } from "./Posts/PostList"
+import { Post } from "./Posts/Posts"
 import { get_all_posts } from "./Posts/PostsManager"
 export const ApplicationViews = () => {
   return (
@@ -10,6 +11,11 @@ export const ApplicationViews = () => {
       <Route exact path="/posts" >
         <PostList />
       </Route>
+
+      <Route exact path="/posts/:postId(\d+)" >
+        <Post />
+      </Route>
+
       
     </>
   )
