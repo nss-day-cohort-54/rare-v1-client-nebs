@@ -13,6 +13,7 @@ export const NavBar = ({ token, setToken }) => {
     navbar.current.classList.toggle('is-active')
   }
 
+  
   return (
     <nav className="navbar is-success mb-3" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -32,7 +33,7 @@ export const NavBar = ({ token, setToken }) => {
           {
             token
               ?
-              <Link to="/" className="navbar-item">Posts</Link>
+              <Link to="/posts" className="navbar-item">Posts</Link>
               :
               ""
           }

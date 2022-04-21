@@ -1,0 +1,1 @@
+//purpose to display, edit, or delete individual posts
