@@ -21,11 +21,9 @@ export const Post = () =>{
     )
 
 
-
-
     return (
         <>
-        <h1>{post.user.first_name}</h1>
+        <h1>{post.title}, {post.user.first_name}, {post.category.label}, {post.publication_date}, {post.content} </h1>
         
         
         </>
