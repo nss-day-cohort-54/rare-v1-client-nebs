@@ -23,8 +23,7 @@ export const PostList = () => {
         <ul className="postList">
             {posts.map((post) => {
                 return <li key={`${post.id}`}>
-                    <Link to = {`/posts/${post.id}`}>{post.title}</Link>,
-                    {post.user.first_name}, {post.category.label}
+                    <Link to = {`/posts/${post.id}`}>{post.title}</Link>, {post.user.first_name}, {post.category.label}
                     </li>
             })}
         </ul>

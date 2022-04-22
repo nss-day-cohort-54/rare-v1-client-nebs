@@ -1,12 +1,13 @@
 //purspose is to produce a list of all categories
 
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import { delete_category, get_all_categories, update_category } from "./CategoryManager"
 
 export const CategoryManagement = () => {
     const [categories, setCategories] = useState([])
     const [updater, setUpdater] = useState(false)
-
+    
 
     useEffect(
         () => {
@@ -18,6 +19,8 @@ export const CategoryManagement = () => {
             )
         },[updater]
     )
+
+
 
 
     return (
@@ -32,7 +35,12 @@ export const CategoryManagement = () => {
                     onClick={
                         () => {
                             delete_category(category.id)
-                            setUpdater(!updater)
+                            .then(
+                                () => {
+                                    setUpdater(!updater)
+                                }
+                            )
+                            
                         }
                         
                     }
