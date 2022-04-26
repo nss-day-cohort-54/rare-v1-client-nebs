@@ -4,7 +4,8 @@ import { CategoryList } from "./Categories/CategoryList"
 import { CategoryForm } from "./Categories/CategoryForm"
 import { PostList } from "./Posts/PostList"
 import { Post } from "./Posts/Posts"
-
+import { get_all_posts } from "./Posts/PostsManager"
+import { TagList } from "./Tags/TagList"
 export const ApplicationViews = () => {
   return (
     <>
@@ -22,7 +23,11 @@ export const ApplicationViews = () => {
         <CategoryList />
       </Route>
 
+      <Route exact path="/tags" >
+        <TagList />
+      </Route>
 
+      
     </>
   )
 }
