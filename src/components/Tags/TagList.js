@@ -36,7 +36,7 @@ export const TagList = () => {
             console.log(tag)
             setTag({})
         }
-
+        setRefresh(!refresh)
         
 
     }
