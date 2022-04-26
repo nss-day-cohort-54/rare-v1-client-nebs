@@ -34,6 +34,7 @@ export const updateTag = (tagInfo) => {
 export const deleteTag = (tagId) => {
     return fetch(`${host}/tags/${tagId}`, 
     {method: "DELETE"})
+
 }
 
 
