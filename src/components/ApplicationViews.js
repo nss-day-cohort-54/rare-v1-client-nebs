@@ -27,7 +27,7 @@ export const ApplicationViews = () => {
         <TagList />
       </Route>
 
-      
+
     </>
   )
 }
