@@ -1,10 +1,10 @@
 
 
-export const TagForm = () => {
+export const TagForm = ({tag, setTag, onSubmitClick, handleChange}) => {
     
 
     return (<>
     
-    <h1>Hello</h1>
+   
     </>)
 }
