@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllTags, addTag, updateTag, addNewTag } from "./TagManager";
+import { getAllTags, addTag, updateTag, addNewTag, deleteTag } from "./TagManager";
 import { useHistory } from "react-router-dom";
 import { TagForm } from "./TagForm";
 
@@ -8,33 +8,50 @@ export const TagList = () => {
     const [tags, setTags] = useState([])
     const [tag, setTag] = useState({})
     const history = useHistory()
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         getAllTags()
             .then((tag) => setTags(tag))
-    }, [])
+    }, [refresh])
 
-    const handleChange = (evt) => {
-        new_tag = Object.assign({}, tag)
+    const handleChange = (event) => {
+        const newTag = Object.assign({}, tag)
 
-        new_tag[evt.target.name] = evt.target.value 
+        newTag[event.target.name] = event.target.value 
 
-        setTag(new_tag)
+        setTag(newTag)
 
-        print(new_tag)
         
     }
 
-    const onSubmitClick = (tagInfo) => {
-        if("id" in tagInfo){
-            updateTag(tagInfo)
+    const onSubmitClick = () => {
+        if("id" in tag){
+            updateTag(tag)
+            console.log("existing")
+            setTag({})
         }
         else{
-            addNewTag(tagInfo)
+            addNewTag(tag)
+            console.log(tag)
+            setTag({})
         }
+
+        
 
     }
 
+    const onDeleteClick = (tag_id) => {
+        deleteTag(tag_id)
+        .then(setTag({}))
+        .then(
+            () => {
+                setRefresh(!refresh)
+            }
+        )
+    }
+
+ 
 
 
     return (
@@ -46,7 +63,12 @@ export const TagList = () => {
                             {tag.label}
                         </div>
                         <button className="btn edit-tag">Edit</button>
-                        <button className="btn delete-tag">Delete</button>
+                        <button className="btn delete-tag"
+                        onClick={
+                            (evt) => {
+                                onDeleteClick(tag.id)
+                            }
+                        }>Delete</button>
                     </div>
 
                 }
@@ -61,17 +83,34 @@ export const TagList = () => {
                 className="labelInput"
                 type="text"
                 name="label"
+                id = "labelInput"
+                onfocus="this.value=''"
                 onChange={
-                    () => {
-                        handleChange
+                    (evt) => {
+                        handleChange(evt)
+                        console.log(tag)
                     }
                 }
                 />
 
+                <button
+                className="submitBtn"
+                onClick={
+                    (evt) => {
+                        document.getElementById("labelInput").value = ""
+                        onSubmitClick(evt)
+                        setRefresh(!refresh)
+
+                        
+                    }
+                }>
+                    Save Tag
+                </button>
+
             </div>
 
 
-            <TagForm tag = {tag} setTag = {setTag} onSubmitClick = {onSubmitClick}/>
+
         </div>
            
         </>

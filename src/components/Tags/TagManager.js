@@ -12,10 +12,11 @@ export const getSingleTag = (tagId) => {
 
 export const addNewTag = (tagInfo) => {
     return fetch(`${host}/tags`, 
-    method = "POST",
-    headers = {
+    {method: "POST",
+    headers: {
         "Content-Type": "application/json"
-    },body = JSON.stringify(tagInfo)
+    },body: JSON.stringify(tagInfo)
+}
     
     )
 }
@@ -23,11 +24,16 @@ export const addNewTag = (tagInfo) => {
 
 export const updateTag = (tagInfo) => {
     return fetch(`${host}/tags/${tagInfo.id}`, 
-    method = "PUT",
-    headers = {
+    {method: "PUT",
+    headers: {
         "Content-Type": "application/json"
-    },body = JSON.stringify(tagInfo)
+    },body: JSON.stringify(tagInfo)
     
-    )
+})}
+
+export const deleteTag = (tagId) => {
+    return fetch(`${host}/tags/${tagId}`, 
+    {method: "DELETE"})
 }
+
 
