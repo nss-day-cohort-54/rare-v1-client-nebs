@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 // create a function for new category form
-export const CategoryForm = () => {
+export const CategoryForm = ({ updater, setUpdater }) => {
 
     // initial state is an object, need to track transient state while user is interacting with form
     const [category, setCategory] = useState({
@@ -32,7 +32,7 @@ export const CategoryForm = () => {
         // render the list of categories for the user to see once they submit a request
         return fetch("http://localhost:8088/categories", fetchOption)
             .then(() => {
-                history.push("/categories")
+                setUpdater(!updater)
             })
     }
 
@@ -57,7 +57,7 @@ export const CategoryForm = () => {
                         onChange={
                             (evt) => {
                                 const copy = { ...category }
-                                copy.description = evt.target.value
+                                copy.label = evt.target.value
                                 setCategory(copy)
                             }
                         } />
