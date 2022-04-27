@@ -11,3 +11,8 @@ export const get_single_post = (postId) => {
     return fetch(`${host}/posts/${postId}`)
     .then(res => res.json())
 }
+
+export const getUserPost = (userId) => {
+    return fetch(`${host}/posts?user=${userId}`)
+    .then(res => res.json())
+}
