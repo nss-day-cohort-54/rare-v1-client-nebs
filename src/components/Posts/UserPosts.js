@@ -25,7 +25,7 @@ export const UserPostsList = () => {
     return (
         <>
             <ul className="postsList">
-                <h2>My Posts</h2>
+                <h2><b>My Posts:</b></h2>
                 {posts.map(
                     (post) => {
                         return <li className="card post--list" key={`post--${post.id}`}>
@@ -40,12 +40,14 @@ export const UserPostsList = () => {
                                         Category: {post.category?.label}
                                     </div>
                                     <div className="postDate">
-                                        {post.publicationDate}
+                                        {post.publication_date}
                                     </div>
+                                    <img className="post--image" src={post.image_url} alt={post.title} width="300" height="400"
+                                    />
                                     <div className="postContent">
                                         {post.content}
                                     </div>
-                                    <button><Link to={''}>Edit</Link></button>
+                                    <button><Link to={`/posts/${post.id}/edit`}>Edit</Link></button>
                                     <button onClick={() => {
 
                                     }}>Delete</button>

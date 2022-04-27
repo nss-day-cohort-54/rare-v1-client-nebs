@@ -6,6 +6,7 @@ import { PostList } from "./Posts/PostList"
 import { Post } from "./Posts/Posts"
 import { UserPostsList } from "./Posts/UserPosts"
 import { TagList } from "./Tags/TagList"
+import { PostEdit } from "./Posts/PostEditor"
 export const ApplicationViews = () => {
   return (
     <>
@@ -21,6 +22,10 @@ export const ApplicationViews = () => {
 
       <Route exact path="/my-posts">
         <UserPostsList />
+      </Route>
+
+      <Route exact path="/posts/:postId(\d+)/edit">
+        <PostEdit />
       </Route>
 
       <Route exact path="/categories" >

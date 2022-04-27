@@ -16,3 +16,13 @@ export const getUserPost = (userId) => {
     return fetch(`${host}/posts?user=${userId}`)
     .then(res => res.json())
 }
+
+export const editPost = (newPost, postId) => {
+    return fetch(`${host}/posts/${postId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPost)
+    })
+}
